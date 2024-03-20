@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Git checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ankush-09/microService_TXApplication.git']])
+            }
+        }
         stage('Grype scan') {
             steps {
                 grypeScan scanDest: 'dir /*', repName: 'myScanResult.txt', autoInstall:true
