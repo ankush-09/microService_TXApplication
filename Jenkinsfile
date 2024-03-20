@@ -8,7 +8,12 @@ pipeline {
         }
         stage('Grype scan') {
             steps {
-                grypeScan scanDest: 'dir: /*', repName: 'myScanResult.txt', autoInstall:true
+                echo ${WORKSPACE}
+            }
+        }
+        stage('Grype scan') {
+            steps {
+                grypeScan scanDest: 'dir:${WORKSPACE}', repName: 'myScanResult.txt', autoInstall:true
             }
         }
     }
