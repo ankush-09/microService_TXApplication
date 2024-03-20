@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Grype scan') {
             steps {
-                grypeScan scanDest: "dir:${WORKSPACE}", repName: 'myScanResult.txt', autoInstall:true
+                grypeScan scanDest: "/var/lib/jenkins/workspace/GrypeScanner", repName: 'myScanResult.txt', autoInstall:true
             }
         }
     }
