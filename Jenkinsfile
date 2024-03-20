@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Grype scan') {
             steps {
-                grypeScan scanDest: 'dir:.', repName: 'myScanResult.txt', autoInstall:true
+                grypeScan scanDest: 'dir:/*', repName: 'myScanResult.txt', autoInstall:true
             }
         }
     }
