@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Print workspace') {
             steps {
-                ls -a ${WORKSPACE}
+                sh "ls -a ${WORKSPACE}"
             }
         }
         stage('Grype scan') {
