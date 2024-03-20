@@ -6,14 +6,14 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ankush-09/microService_TXApplication.git']])
             }
         }
-        stage('Grype scan') {
+        stage('Print workspace') {
             steps {
-                echo ${WORKSPACE}
+                echo "${WORKSPACE}"
             }
         }
         stage('Grype scan') {
             steps {
-                grypeScan scanDest: 'dir:${WORKSPACE}', repName: 'myScanResult.txt', autoInstall:true
+                grypeScan scanDest: "dir:${WORKSPACE}", repName: 'myScanResult.txt', autoInstall:true
             }
         }
     }
