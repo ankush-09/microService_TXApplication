@@ -6,20 +6,18 @@ pipeline {
                 grypeScan scanDest: 'dir:.', repName: 'myScanResult.txt', autoInstall:true
             }
         }
-        stage('Publish Report') {
-            steps {
-                // Archive the Grype scan report as an artifact
-                archiveArtifacts artifacts: 'myScanResult.txt', onlyIfSuccessful: true
-            }
-        }
     }
     post {
         always {
-            // Record issues and aggregate results
-            recordIssues(
-                tools: [grype()],
-                aggregatingResults: true
-            )
+            // Publish HTML report
+            publishHTML([
+                allowMissing: false,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: '.',
+                reportFiles: 'myScanResult.txt',
+                reportName: 'Grype Scan Report'
+            ])
         }
     }
 }
