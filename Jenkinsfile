@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Print workspace') {
             steps {
-                echo "${WORKSPACE}"
+                ls -a "${WORKSPACE}"
             }
         }
         stage('Grype scan') {
