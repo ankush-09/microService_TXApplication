@@ -14,6 +14,7 @@ pipeline {
         stage('Grype scan') {
             steps {
                 sh "grype ${WORKSPACE} > myScanResult.txt"
+            }
         }
     }
     post {
@@ -29,5 +30,4 @@ pipeline {
             ])
         }
     }
- }
 }
